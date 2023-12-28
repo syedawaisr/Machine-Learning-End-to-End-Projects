@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Upload Image</h1>
+    <form method="POST" action="/predict" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Predict">
+    </form>
+
+    <div class="prediction">
+        <h2>Prediction:</h2>
+        {% if prediction %}
+            <p>{{ prediction }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
