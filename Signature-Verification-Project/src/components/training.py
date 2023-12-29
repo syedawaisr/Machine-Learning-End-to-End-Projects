@@ -7,6 +7,9 @@ from src.components.data_transform import Data_transform
 from sklearn.metrics import accuracy_score, classification_report
 from dataclasses import dataclass
 from src.utils import save_object
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 @dataclass 
 class ModelTrainerConfig:
@@ -21,7 +24,7 @@ class Training_models:
         # get final_data from data_transform
 
         final_data = self.df.get_final_data()
-        print(final_data.head(40))
+        print(final_data)
 
         # get data after feature engineering
         x_train, x_test, y_train, y_test = self.df.transform_data(final_data)
@@ -41,6 +44,20 @@ class Training_models:
         # Display classification report
         print("Classification Report:")
         print(classification_report(y_test, predictions))
+
+        print("Confusion matrix:")
+        print(confusion_matrix(y_test,predictions))
+
+       
+        cm = confusion_matrix(y_test, predictions)
+
+        # Plotting
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(cm, annot=True, cmap='Blues', fmt='g')
+        plt.xlabel('Predicted')
+        plt.ylabel('True')
+        plt.title('Confusion Matrix')
+        plt.show()
 
         save_object(
                  file_path=self.model_trainer_config.trained_model_file_path,

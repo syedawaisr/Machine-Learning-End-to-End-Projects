@@ -39,7 +39,7 @@ class Data_ingestion:
             images = []
             # Loop through all files in the directory
             for filename in os.listdir(directory):
-                if filename.endswith(".JPG") or filename.endswith(".jpg") or filename.endswith(".HEIC") or filename.endswith(".heic") :  # Check for image extensions
+                if filename.endswith(".JPG") or filename.endswith(".jpg"):  # Check for image extensions
                     filepath = os.path.join(directory, filename)
                     image = cv.imread(filepath, cv.IMREAD_GRAYSCALE)
                     if image is not None:

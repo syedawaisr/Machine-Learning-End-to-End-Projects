@@ -70,7 +70,7 @@ class Data_transform:
             x = df.iloc[:,:-1] # all features excluding target value
             y = df['target']
 
-            x_train, x_test , y_train, y_test = train_test_split(x, y,test_size = 0.7 , random_state = 42)
+            x_train, x_test , y_train, y_test = train_test_split(x, y,test_size = 0.3 , random_state = 42)
             logging.info("Cross validation is completed successfully")
 
             # Scale the features using StandardScaler
